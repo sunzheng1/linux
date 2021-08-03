@@ -42,3 +42,5 @@ obj-$(CONFIG_FIELDBUS_DEV)     += fieldbus/
 obj-$(CONFIG_QLGE)		+= qlge/
 obj-$(CONFIG_WFX)		+= wfx/
 obj-y				+= hikey9xx/
+
+obj-$(CONFIG_ZHOUYI_AIPU)	+= aipu/
