@@ -98,6 +98,11 @@
 				function = "uart1";
 			};
 
+			uart2_pb_pins: uart2-pb-pins {
+				pins = "PB0", "PB1";
+				function = "uart2";
+			};
+
 			mmc0_pf_pins: mmc0-pf-pins {
 				pins = "PF0", "PF1", "PF2",
 				       "PF3", "PF4", "PF5";
@@ -159,6 +164,11 @@
 				function = "spi1";
 			};
 
+			// spi1_cs_pl2: spi1-cs-pl2 {
+			// 	pins = "PL2";
+			// 	function = "spi1";
+			// };
+
 			spi1_clk_ph1: spi1-clk-ph1 {
 				pins = "PH1";
 				function = "spi1";
@@ -168,6 +178,12 @@
 				pins = "PH2";
 				function = "spi1";
 			};
+
+			spi1_miso_ph3: spi1-miso-ph3 {
+				pins = "PH3";
+				function = "spi1";
+			};
+
 		};
 
 		pwm: pwm@2000c00 {
@@ -325,6 +341,21 @@
 			#size-cells = <0>;
 		};
 
+		r_i2c: i2c@0x07081400{
+			compatible = "allwinner,sun50i-a64-i2c",
+				     "allwinner,sun6i-a31-i2c";
+			reg = <0x07081400 0x400>;
+			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&r_ccu CLK_R_BUS_I2C>;
+            resets = <&r_ccu RST_R_BUS_I2C>;
+			clock-frequency = <400000>;
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&r_i2c_pins>;
+			status = "disabled";
+			#address-cells = <1>;
+			#size-cells = <0>;            
+		};
+
 		usb_otg: usb@4100000 {
 			compatible = "allwinner,sun50i-r329-musb",
 				     "allwinner,sun8i-a33-musb";
@@ -414,6 +445,12 @@
 			#gpio-cells = <3>;
 			interrupt-controller;
 			#interrupt-cells = <3>;
+
+            r_i2c_pins: r_i2c_pins {
+				pins = "PL5", "PL6";
+				function = "s_i2c";
+			};
+
 		};
 
 		ths: thermal-sensor@7030400 {
