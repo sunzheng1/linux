@@ -16,7 +16,9 @@
 
 	aliases {
 		serial0 = &uart0;
+        serial1 = &uart1;
         serial2 = &uart2;
+        serial3 = &uart3;
         i2c0 = &r_i2c;
 		mmc0 = &mmc0;
 	};
@@ -25,12 +27,12 @@
 		stdout-path = "serial0:115200n8";
 	};
 
-	backlight: backlight {
-		compatible = "pwm-backlight";
-		pwms = <&pwm 4 50000 PWM_POLARITY_INVERTED>;
-		brightness-levels = <0 16 18 20 22 24 26 29 32 35 38 42 46 51 56 62 68 75 83 91 100>;
-		default-brightness-level = <15>;
-	};
+	// backlight: backlight {
+	// 	compatible = "pwm-backlight";
+	// 	pwms = <&pwm 4 50000 PWM_POLARITY_INVERTED>;
+	// 	brightness-levels = <0 16 18 20 22 24 26 29 32 35 38 42 46 51 56 62 68 75 83 91 100>;
+	// 	default-brightness-level = <15>;
+	// };
 
 	leds {
 		compatible = "pwm-leds";
@@ -126,11 +128,11 @@
 	status = "okay";
 };
 
-&pwm {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pwm0_pb0>, <&pwm1_pb1>, <&pwm2_pb2>, <&pwm4_ph6>;
-	status = "okay";
-};
+// &pwm {
+// 	pinctrl-names = "default";
+// 	pinctrl-0 = <&pwm0_pb0>, <&pwm1_pb1>, <&pwm2_pb2>, <&pwm4_ph6>;
+// 	status = "disable";
+// };
 
 &r_i2c {
 	status = "okay";
@@ -188,6 +190,7 @@
 };
 //ABCDEFGHIJ K  L
 //0123456789 10 11
+
 &uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0_pb_pins>;
@@ -196,7 +199,19 @@
 
 &uart2 {
 	pinctrl-names = "default";
+	pinctrl-0 = <&uart2_pins>;
+	status = "okay";
+};
+
+&uart2 {
+	pinctrl-names = "default";
 	pinctrl-0 = <&uart2_pb_pins>;
+	status = "okay";
+};
+
+&uart3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart3_ph_pins>;
 	status = "okay";
 };
 
