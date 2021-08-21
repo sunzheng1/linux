@@ -21,6 +21,10 @@
         serial3 = &uart3;
         i2c0 = &r_i2c;
 		mmc0 = &mmc0;
+		// pwm1 = &pwm1;
+		// pwm2 = &pwm2;
+		// pwm7 = &pwm7;
+		// pwm8 = &pwm8;		
 	};
 
 	chosen {
@@ -34,34 +38,34 @@
 	// 	default-brightness-level = <15>;
 	// };
 
-	leds {
-		compatible = "pwm-leds";
-        status = "disable";
-		led-1 {
-			color = <LED_COLOR_ID_RED>;
-	                function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <1>;
-			pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-			max-brightness = <255>;
-			linux,default-trigger = "heartbeat";
-		};
+	// leds {
+	// 	compatible = "pwm-leds";
+    //     status = "disable";
+	// 	led-1 {
+	// 		color = <LED_COLOR_ID_RED>;
+	//                 function = LED_FUNCTION_INDICATOR;
+	// 		function-enumerator = <1>;
+	// 		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
+	// 		max-brightness = <255>;
+	// 		linux,default-trigger = "heartbeat";
+	// 	};
 
-		led-2 {
-			color = <LED_COLOR_ID_GREEN>;
-			function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <2>;
-			pwms = <&pwm 1 50000 PWM_POLARITY_INVERTED>;
-			max-brightness = <255>;
-		};
+	// 	led-2 {
+	// 		color = <LED_COLOR_ID_GREEN>;
+	// 		function = LED_FUNCTION_INDICATOR;
+	// 		function-enumerator = <2>;
+	// 		pwms = <&pwm 1 50000 PWM_POLARITY_INVERTED>;
+	// 		max-brightness = <255>;
+	// 	};
 
-		led-3 {
-			color = <LED_COLOR_ID_BLUE>;
-			function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <3>;
-			pwms = <&pwm 2 50000 PWM_POLARITY_INVERTED>;
-			max-brightness = <255>;
-		};
-	};
+	// 	led-3 {
+	// 		color = <LED_COLOR_ID_BLUE>;
+	// 		function = LED_FUNCTION_INDICATOR;
+	// 		function-enumerator = <3>;
+	// 		pwms = <&pwm 2 50000 PWM_POLARITY_INVERTED>;
+	// 		max-brightness = <255>;
+	// 	};
+	// };
 };
 
 &codec {
@@ -128,10 +132,34 @@
 	status = "okay";
 };
 
-// &pwm {
+&pwm {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm2_pb2>, <&pwm3_pb3>, <&pwm7_pb7>, <&pwm8_pb8>;
+	status = "okay";
+};
+
+// &pwm1 {
 // 	pinctrl-names = "default";
-// 	pinctrl-0 = <&pwm0_pb0>, <&pwm1_pb1>, <&pwm2_pb2>, <&pwm4_ph6>;
-// 	status = "disable";
+// 	pinctrl-0 = <&pwm2_pb2>;
+// 	status = "okay";
+// };
+
+// &pwm2 {
+// 	pinctrl-names = "default";
+// 	pinctrl-0 = <&pwm3_pb3>;
+// 	status = "okay";
+// };
+
+// &pwm7 {
+// 	pinctrl-names = "default";
+// 	pinctrl-0 = <&pwm7_pb7>;
+// 	status = "okay";
+// };
+
+// &pwm8 {
+// 	pinctrl-names = "default";
+// 	pinctrl-0 = <&pwm8_pb8>;
+// 	status = "okay";
 // };
 
 &r_i2c {
