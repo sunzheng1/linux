@@ -164,6 +164,26 @@
 				function = "pwm";
 			};
 
+			spi0_cs_pc0: spi0-cs-pc0 {
+				pins = "PC0";
+				function = "spi0";
+			};
+
+			spi0_clk_pc4: spi1-clk-pc4 {
+				pins = "PC4";
+				function = "spi0";
+			};
+
+			spi0_mosi_pc3: spi1-mosi-pc3 {
+				pins = "PC3";
+				function = "spi0";
+			};
+
+			spi0_miso_pc1: spi1-miso-pc1 {
+				pins = "PC1";
+				function = "spi0";
+			};
+
 			spi1_cs_ph0: spi1-cs-ph0 {
 				pins = "PH0";
 				function = "spi1";
@@ -189,6 +209,15 @@
 				function = "spi1";
 			};
 
+			i2c0_ph_pins: i2c0-ph-pins {
+				pins = "PH6", "PH7";
+				function = "i2c0";
+			};
+
+			i2c1_ph_pins: i2c1-ph-pins {
+				pins = "PH8", "PH9";
+				function = "i2c1";
+			};
 		};
 
 		pwm: pwm@2000c00 {
@@ -371,20 +400,42 @@
 			#size-cells = <0>;
 		};
 
-		r_i2c: i2c@0x07081400{
-			compatible = "allwinner,sun50i-a64-i2c",
-				     "allwinner,sun6i-a31-i2c";
-			reg = <0x07081400 0x400>;
-			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-			clocks = <&r_ccu CLK_R_BUS_I2C>;
-            resets = <&r_ccu RST_R_BUS_I2C>;
-			clock-frequency = <400000>;
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <&r_i2c_pins>;
+		i2c0: i2c@0x02502000 {
+			compatible = "allwinner,sun6i-a31-i2c";
+			reg = <0x02502000 0x400>;
+			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&ccu CLK_BUS_I2C0>;
+			resets = <&ccu RST_BUS_I2C0>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c0_ph_pins>;
 			status = "disabled";
-			#address-cells = <1>;
-			#size-cells = <0>;            
 		};
+
+		i2c1: i2c@0x02502400 {
+			compatible = "allwinner,sun6i-a31-i2c";
+			reg = <0x02502400 0x400>;
+			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&ccu CLK_BUS_I2C1>;
+			resets = <&ccu RST_BUS_I2C1>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c1_ph_pins>;
+			status = "disabled";
+		};
+
+		// r_i2c: i2c@0x07081400{
+		// 	compatible = "allwinner,sun50i-a64-i2c",
+		// 		     "allwinner,sun6i-a31-i2c";
+		// 	reg = <0x07081400 0x400>;
+		// 	interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+		// 	clocks = <&r_ccu CLK_R_BUS_I2C>;
+        //     resets = <&r_ccu RST_R_BUS_I2C>;
+		// 	clock-frequency = <400000>;
+		// 	pinctrl-names = "default", "sleep";
+		// 	pinctrl-0 = <&r_i2c_pins>;
+		// 	status = "disabled";
+		// 	#address-cells = <1>;
+		// 	#size-cells = <0>;            
+		// };
 
 		usb_otg: usb@4100000 {
 			compatible = "allwinner,sun50i-r329-musb",
@@ -476,10 +527,10 @@
 			interrupt-controller;
 			#interrupt-cells = <3>;
 
-            r_i2c_pins: r_i2c_pins {
-				pins = "PL5", "PL6";
-				function = "s_i2c";
-			};
+            // r_i2c_pins: r_i2c_pins {
+			// 	pins = "PL5", "PL6";
+			// 	function = "s_i2c";
+			// };
 
 		};
 
