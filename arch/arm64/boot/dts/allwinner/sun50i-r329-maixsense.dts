@@ -88,34 +88,6 @@
 
 &lradc {
 	status = "disable";
-
-	button-155 {
-		label = "Right";
-		linux,code = <KEY_RIGHT>;
-		channel = <0>;
-		voltage = <155013>;
-	};
-
-	button-310 {
-		label = "Left";
-		linux,code = <KEY_LEFT>;
-		channel = <0>;
-		voltage = <309828>;
-	};
-
-	button-463 {
-		label = "B";
-		linux,code = <KEY_B>;
-		channel = <0>;
-		voltage = <463317>;
-	};
-
-	button-599 {
-		label = "A";
-		linux,code = <KEY_A>;
-		channel = <0>;
-		voltage = <599420>;
-	};
 };
 
 &mmc0 {
@@ -134,33 +106,9 @@
 
 &pwm {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pwm2_pb2>, <&pwm3_pb3>, <&pwm7_pb7>, <&pwm8_pb8>;
-	status = "disable";
+	pinctrl-0 = <&pwm2_pb2>, <&pwm3_pb3>, <&pwm6_pb6>, <&pwm7_pb7>;
+	status = "okay";
 };
-
-// &pwm1 {
-// 	pinctrl-names = "default";
-// 	pinctrl-0 = <&pwm2_pb2>;
-// 	status = "okay";
-// };
-
-// &pwm2 {
-// 	pinctrl-names = "default";
-// 	pinctrl-0 = <&pwm3_pb3>;
-// 	status = "okay";
-// };
-
-// &pwm7 {
-// 	pinctrl-names = "default";
-// 	pinctrl-0 = <&pwm7_pb7>;
-// 	status = "okay";
-// };
-
-// &pwm8 {
-// 	pinctrl-names = "default";
-// 	pinctrl-0 = <&pwm8_pb8>;
-// 	status = "okay";
-// };
 
 &i2c0 {
 	status = "okay";
@@ -178,11 +126,7 @@
 
 	//ICM_20602 ICM_20689_CS
 	cs-gpios = <&pio 2 0 GPIO_ACTIVE_HIGH>,<&r_pio 0 2 GPIO_ACTIVE_HIGH>;
-
-	num-cs = <1>;
 	spidev@0 {
-		status = "okay";
-
 		compatible = "spidev";
 		/* spi default max clock 100Mhz */
 		spi-max-frequency = <100000000>;
@@ -190,8 +134,6 @@
 	};
 
 	spidev@1 {
-		status = "okay";
-
 		compatible = "spidev";
 		/* spi default max clock 100Mhz */
 		spi-max-frequency = <100000000>;
@@ -207,10 +149,7 @@
 	status = "okay";
 	//MS5611 PMW3901
 	cs-gpios = <&pio 7 0 GPIO_ACTIVE_HIGH>,<&r_pio 0 3 GPIO_ACTIVE_HIGH>;
-	num-cs = <1>;
 	spidev@0 {
-		status = "okay";
-
 		compatible = "spidev";
 		/* spi default max clock 100Mhz */
 		spi-max-frequency = <100000000>;
@@ -218,8 +157,6 @@
 	};
 
 	spidev@1 {
-		status = "okay";
-
 		compatible = "spidev";
 		/* spi default max clock 100Mhz */
 		spi-max-frequency = <100000000>;

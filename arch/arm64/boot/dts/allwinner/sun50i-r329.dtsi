@@ -13,6 +13,35 @@
 	#address-cells = <1>;
 	#size-cells = <1>;
 
+	cpu0_opp_table: opp-table-cpu {
+		compatible = "operating-points-v2";
+		opp-shared;
+
+		opp-648000000 {
+			opp-hz = /bits/ 64 <648000000>;
+			opp-microvolt = <1040000>;
+			clock-latency-ns = <244144>; /* 8 32k periods */
+		};
+
+		opp-816000000 {
+			opp-hz = /bits/ 64 <816000000>;
+			opp-microvolt = <1100000>;
+			clock-latency-ns = <244144>; /* 8 32k periods */
+		};
+
+		opp-1008000000 {
+			opp-hz = /bits/ 64 <1008000000>;
+			opp-microvolt = <1200000>;
+			clock-latency-ns = <244144>; /* 8 32k periods */
+		};
+
+		opp-1512000000 {
+			opp-hz = /bits/ 64 <1512000000>;
+			opp-microvolt = <1300000>;
+			clock-latency-ns = <244144>; /* 8 32k periods */
+		};
+	};
+
 	cpus {
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -24,6 +53,7 @@
 			enable-method = "psci";
 			clocks = <&ccu CLK_CPUX>;
 			clock-names = "cpu";
+			operating-points-v2 = <&cpu0_opp_table>;
 			#cooling-cells = <2>;
 		};
 
@@ -34,6 +64,7 @@
 			enable-method = "psci";
 			clocks = <&ccu CLK_CPUX>;
 			clock-names = "cpu";
+			operating-points-v2 = <&cpu0_opp_table>;
 			#cooling-cells = <2>;
 		};
 	};
@@ -154,13 +185,13 @@
 				function = "pwm";
 			};
 
-			pwm7_pb7: pwm7-pb7 {
-				pins = "PB7";
+			pwm6_pb6: pwm6-pb6 {
+				pins = "PB6";
 				function = "pwm";
 			};
 
-			pwm8_pb8: pwm8-pb8 {
-				pins = "PB8";
+			pwm7_pb7: pwm7-pb7 {
+				pins = "PB7";
 				function = "pwm";
 			};
 
@@ -230,30 +261,6 @@
 			#pwm-cells = <3>;
 			
 		};
-
-		// pwm1: pwm1@2000c00 {
-		// 	compatible = "allwinner,sun50i-r329-pwm1";
-		// 	pinctrl-names = "active", "sleep";
-		// 	reg_base = <0x02000c00>;
-		// };
-
-		// pwm2: pwm2@2000c00 {
-		// 	compatible = "allwinner,sun50i-r329-pwm2";
-		// 	pinctrl-names = "active", "sleep";
-		// 	reg_base = <0x02000c00>;
-		// };
-
-		// pwm7: pwm7@2000c00 {
-		// 	compatible = "allwinner,sun50i-r329-pwm7";
-		// 	pinctrl-names = "active", "sleep";
-		// 	reg_base = <0x02000c00>;
-		// };
-
-		// pwm8: pwm8@2000c00 {
-		// 	compatible = "allwinner,sun50i-r329-pwm8";
-		// 	pinctrl-names = "active", "sleep";
-		// 	reg_base = <0x02000c00>;
-		// };
 
 		ccu: clock@2001000 {
 			compatible = "allwinner,sun50i-r329-ccu";
