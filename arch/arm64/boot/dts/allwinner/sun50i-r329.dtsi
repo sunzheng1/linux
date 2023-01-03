@@ -144,23 +144,23 @@
 				function = "mmc1_d3";
 			};
 
+			pwm0_pb0: pwm0-pb0 {
+				pins = "PB0";
+				function = "pwm";
+			};
+
+			pwm1_pb1: pwm1-pb1 {
+				pins = "PB1";
+				function = "pwm";
+			};
+
 			pwm2_pb2: pwm2-pb2 {
 				pins = "PB2";
 				function = "pwm";
 			};
 
-			pwm3_pb3: pwm3-pb3 {
-				pins = "PB3";
-				function = "pwm";
-			};
-
-			pwm6_pb6: pwm6-pb6 {
-				pins = "PB6";
-				function = "pwm";
-			};
-
-			pwm7_pb7: pwm7-pb7 {
-				pins = "PB7";
+			pwm4_ph6: pwm4-ph6 {
+				pins = "PH6";
 				function = "pwm";
 			};
 
