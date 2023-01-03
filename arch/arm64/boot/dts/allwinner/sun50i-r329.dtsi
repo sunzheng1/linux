@@ -97,6 +97,16 @@
 				pins = "PG8", "PG9";
 				function = "uart1";
 			};
+			
+			uart2_pb_pins: uart2-pb-pins {
+				pins = "PB0", "PB1";
+				function = "uart2";
+			};
+
+			uart3_ph_pins: uart3-ph-pins {
+				pins = "PH4", "PH5";
+				function = "uart3";
+			};
 
 			mmc0_pf_pins: mmc0-pf-pins {
 				pins = "PF0", "PF1", "PF2",
@@ -134,24 +144,44 @@
 				function = "mmc1_d3";
 			};
 
-			pwm0_pb0: pwm0-pb0 {
-				pins = "PB0";
-				function = "pwm";
-			};
-
-			pwm1_pb1: pwm1-pb1 {
-				pins = "PB1";
-				function = "pwm";
-			};
-
 			pwm2_pb2: pwm2-pb2 {
 				pins = "PB2";
 				function = "pwm";
 			};
 
-			pwm4_ph6: pwm4-ph6 {
-				pins = "PH6";
+			pwm3_pb3: pwm3-pb3 {
+				pins = "PB3";
 				function = "pwm";
+			};
+
+			pwm6_pb6: pwm6-pb6 {
+				pins = "PB6";
+				function = "pwm";
+			};
+
+			pwm7_pb7: pwm7-pb7 {
+				pins = "PB7";
+				function = "pwm";
+			};
+
+			spi0_cs_pc0: spi0-cs-pc0 {
+				pins = "PC0";
+				function = "spi0";
+			};
+
+			spi0_clk_pc4: spi1-clk-pc4 {
+				pins = "PC4";
+				function = "spi0";
+			};
+
+			spi0_mosi_pc3: spi1-mosi-pc3 {
+				pins = "PC3";
+				function = "spi0";
+			};
+
+			spi0_miso_pc1: spi1-miso-pc1 {
+				pins = "PC1";
+				function = "spi0";
 			};
 
 			spi1_cs_ph0: spi1-cs-ph0 {
@@ -167,6 +197,20 @@
 			spi1_mosi_ph2: spi1-mosi-ph2 {
 				pins = "PH2";
 				function = "spi1";
+			};
+			spi1_miso_ph3: spi1-miso-ph3 {
+				pins = "PH3";
+				function = "spi1";
+			};
+
+			i2c0_ph_pins: i2c0-ph-pins {
+				pins = "PH6", "PH7";
+				function = "i2c0";
+			};
+
+			i2c1_ph_pins: i2c1-ph-pins {
+				pins = "PH8", "PH9";
+				function = "i2c1";
 			};
 		};
 
@@ -324,7 +368,28 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 		};
+		
+		i2c0: i2c@0x02502000 {
+			compatible = "allwinner,sun6i-a31-i2c";
+			reg = <0x02502000 0x400>;
+			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&ccu CLK_BUS_I2C0>;
+			resets = <&ccu RST_BUS_I2C0>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c0_ph_pins>;
+			status = "disabled";
+		};
 
+		i2c1: i2c@0x02502400 {
+			compatible = "allwinner,sun6i-a31-i2c";
+			reg = <0x02502400 0x400>;
+			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&ccu CLK_BUS_I2C1>;
+			resets = <&ccu RST_BUS_I2C1>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c1_ph_pins>;
+			status = "disabled";
+		};
 		usb_otg: usb@4100000 {
 			compatible = "allwinner,sun50i-r329-musb",
 				     "allwinner,sun8i-a33-musb";
