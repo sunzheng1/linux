@@ -214,7 +214,7 @@
 	status = "okay";
 };
 &usb_otg {
-	dr_mode = "otg";
+	dr_mode = "peripheral";//otg
 	status = "okay";
 };
 
