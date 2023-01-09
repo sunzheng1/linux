@@ -149,8 +149,8 @@
 				function = "pwm";
 			};
 
-			pwm3_pb3: pwm3-pb3 {
-				pins = "PB3";
+			pwm4_ph6: pwm4-ph6 {
+				pins = "PH6";
 				function = "pwm";
 			};
 
