@@ -99,7 +99,7 @@
 			};
 			
 			uart2_pb_pins: uart2-pb-pins {
-				pins = "PB0", "PB1";
+				pins = "", "PB1";
 				function = "uart2";
 			};
 
