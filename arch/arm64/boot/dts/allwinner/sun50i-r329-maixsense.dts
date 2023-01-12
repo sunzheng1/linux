@@ -30,45 +30,42 @@
 		stdout-path = "serial0:115200n8";
 	};
 
-	backlight: backlight {
-		compatible = "pwm-backlight";
-		pwms = <&pwm 4 50000 PWM_POLARITY_INVERTED>;
-		brightness-levels = <0 16 18 20 22 24 26 29 32 35 38 42 46 51 56 62 68 75 83 91 100>;
-		default-brightness-level = <15>;
-	};
+//	backlight: backlight {
+//		compatible = "pwm-backlight";
+//		pwms = <&pwm 4 50000 PWM_POLARITY_INVERTED>;
+//		brightness-levels = <0 16 18 20 22 24 26 29 32 35 38 42 46 51 56 62 68 75 83 91 100>;
+//		default-brightness-level = <15>;
+//	};
 
 	leds {
-		compatible = "pwm-leds";
+		compatible = "gpio-leds";
+		status = "okay";
 
-		led-1 {
-			color = <LED_COLOR_ID_RED>;
-	                function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <1>;
-			pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-			max-brightness = <255>;
-			linux,default-trigger = "heartbeat";
+		led-0 {
+			label = "red";
+			gpios = <&r_pio 0 9 GPIO_ACTIVE_LOW>; /* PL9 */
 		};
 
+		led-1 {
+			label = "green";
+			gpios = <&r_pio 0 8 GPIO_ACTIVE_LOW>; /* PL8 */			
+		};
 		led-2 {
-			color = <LED_COLOR_ID_GREEN>;
-			function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <2>;
-			pwms = <&pwm 1 50000 PWM_POLARITY_INVERTED>;
-			max-brightness = <255>;
+			label = "blue:heartbeat";
+			gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
+			function = LED_FUNCTION_HEARTBEAT;
+			linux,default-trigger = "heartbeat";				
 		};
 
 		led-3 {
-			color = <LED_COLOR_ID_BLUE>;
-			function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <3>;
-			pwms = <&pwm 2 50000 PWM_POLARITY_INVERTED>;
-			max-brightness = <255>;
+			label = "sensors_en";
+			gpios = <&r_pio 1 5 GPIO_ACTIVE_LOW>; /* PM5 */			
 		};
 	};
 };
 
 &codec {
-	status = "okay";
+	status = "disable";
 	allwinner,audio-routing =
 		"Speaker", "SPKL",
 		"MIC1", "Mic",
@@ -78,7 +75,7 @@
 };
 
 &codec_analog {
-	status = "okay";
+	status = "disable";
 };
 
 &ehci0 {
@@ -86,35 +83,7 @@
 };
 
 &lradc {
-	status = "okay";
-
-	button-155 {
-		label = "Right";
-		linux,code = <KEY_RIGHT>;
-		channel = <0>;
-		voltage = <155013>;
-	};
-
-	button-310 {
-		label = "Left";
-		linux,code = <KEY_LEFT>;
-		channel = <0>;
-		voltage = <309828>;
-	};
-
-	button-463 {
-		label = "B";
-		linux,code = <KEY_B>;
-		channel = <0>;
-		voltage = <463317>;
-	};
-
-	button-599 {
-		label = "A";
-		linux,code = <KEY_A>;
-		channel = <0>;
-		voltage = <599420>;
-	};
+	status = "disable";
 };
 
 &mmc0 {
@@ -214,11 +183,11 @@
 	status = "okay";
 };
 &usb_otg {
-	dr_mode = "otg";
+	dr_mode = "peripheral";
 	status = "okay";
 };
 
 &usbphy {
-	usb0_id_det-gpios = <&pio 1 0 GPIO_ACTIVE_HIGH>; /* PB0 */
+	//usb0_id_det-gpios = <&pio 1 0 GPIO_ACTIVE_HIGH>; /* PB0 */
 	status = "okay";
 };
