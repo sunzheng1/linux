@@ -183,11 +183,11 @@
 	status = "okay";
 };
 &usb_otg {
-	dr_mode = "peripheral";
+	dr_mode = "otg";
 	status = "okay";
 };
 
 &usbphy {
-	//usb0_id_det-gpios = <&pio 1 0 GPIO_ACTIVE_HIGH>; /* PB0 */
+	usb0_id_det-gpios = <&pio 1 0 GPIO_ACTIVE_HIGH>; /* PB0 */
 	status = "okay";
 };
